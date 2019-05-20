@@ -1,9 +1,9 @@
-# letsGO :notes: :musical_note:
+# Let's GO :notes: :musical_note:
 Projeto de Linguagens de Programação envolvendo a criação de um chat escrito em GO :heartpulse:
 
 * ###### :exclamation: :boom: *nao deem push na master - criem outra branch* :collision:
 
-* ###### Guia de git para quem precisar/quiser: https://www.caelum.com.br/apostila-ruby-on-rails/mais-ruby-classes-objetos-e-metodos/#4-6-classes 
+* ###### Guia de git para quem precisar/quiser: [link](https://www.caelum.com.br/apostila-ruby-on-rails/mais-ruby-classes-objetos-e-metodos/#4-6-classes) 
 
 * Fiquem com esse gif fofo :revolving_hearts: :two_hearts:
 
