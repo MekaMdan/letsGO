@@ -6,4 +6,5 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
 * ###### Guia de git para quem precisar/quiser: https://www.caelum.com.br/apostila-ruby-on-rails/mais-ruby-classes-objetos-e-metodos/#4-6-classes 
 
 * Fiquem com esse gif fofo
+
 ![Gif fofo](https://www.naomesmo.com.br/wp-content/uploads/2015/06/cuteness.gif)
