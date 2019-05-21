@@ -15,8 +15,8 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
 
 :heartpulse:
 
-1. Link sobre como instalar Go
-    -[Ubuntu] (https://tecadmin.net/install-go-on-ubuntu/)
+1. Link sobre como instalar Go :
+    - [Ubuntu] (https://tecadmin.net/install-go-on-ubuntu/)
     -[Site oficial] (https://golang.org/doc/install)
 
 2.  Links uteis sobre o projeto do chat em GO:
@@ -24,5 +24,5 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
     - [pusher](https://pusher.com/tutorials/chat-app-go)
     - [scaledrone](https://www.scaledrone.com/blog/go-chat-app-tutorial-build-a-real-time-chat/amp/)
 
-3. Tutorias
-    -[GO-Tour] (https://go-tour-br.appspot.com/welcome/1)
+3. Tutorias :
+    - [GO-Tour] (https://go-tour-br.appspot.com/welcome/1)
