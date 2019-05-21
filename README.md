@@ -19,8 +19,10 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
     -[Ubuntu] (https://tecadmin.net/install-go-on-ubuntu/)
     -[Site oficial] (https://golang.org/doc/install)
 
-2.  Links uteis sobre o projeto em GO:
+2.  Links uteis sobre o projeto do chat em GO:
     - [scotch.io](https://scotch.io/bar-talk/build-a-realtime-chat-server-with-go-and-websockets)
     - [pusher](https://pusher.com/tutorials/chat-app-go)
     - [scaledrone](https://www.scaledrone.com/blog/go-chat-app-tutorial-build-a-real-time-chat/amp/)
 
+3. Tutorias
+    -[GO-Tour] (https://go-tour-br.appspot.com/welcome/1)
