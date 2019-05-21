@@ -2,7 +2,7 @@
 Projeto de Linguagens de Programação envolvendo a criação de um chat escrito em GO :heartpulse:
 
 * ###### :exclamation: :boom: *nao deem push na master - criem outra branch/ a não ser que seja para editar um dos arquivos .md* :collision:
-    - ######*Criando um novo branch:*
+    - ###### *Criando um novo branch:*
     `
     git checkout -b (nome_da_branch)
     `
