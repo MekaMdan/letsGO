@@ -1,6 +1,6 @@
-#Let's GO :notes: :musical_note:
+# Let's GO :notes: :musical_note:
     
-    ##Arquivo contendo divisão de tarefas/ Atualização de tarefas.
+    ## Arquivo contendo divisão de tarefas/ Atualização de tarefas.
 
     ### Autores:
         - Ana Luísa 
