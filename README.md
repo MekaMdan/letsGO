@@ -1,7 +1,11 @@
 # Let's GO :notes: :musical_note:
 Projeto de Linguagens de Programação envolvendo a criação de um chat escrito em GO :heartpulse:
 
-* ###### :exclamation: :boom: *nao deem push na master - criem outra branch* :collision:
+* ###### :exclamation: :boom: *nao deem push na master - criem outra branch/ a não ser que seja para editar um dos arquivos .md* :collision:
+    - ######*Criando um novo branch:*
+    `
+    git checkout -b (nome_da_branch)
+    `
 
 * ###### Guia de git para quem precisar/quiser: [guia de github](https://rogerdudler.github.io/git-guide/index.pt_BR.html) 
 
