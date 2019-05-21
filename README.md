@@ -11,7 +11,7 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
 
 * ###### Fiquem com esse gif fofo :revolving_hearts: :two_hearts:
 
-![Gif fofo](https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiVq7Wb26ziAhWlILkGHb9yDDkQjRx6BAgBEAU&url=https%3A%2F%2Fmedium.com%2Fmeneguite%2Fgo-language-desbravando-uma-linguagem-de-programa%25C3%25A7%25C3%25A3o-parte-1-a28d126ac1e5&psig=AOvVaw3PpRRFwl0-ETIcWPdUZtJR&ust=1558531171510649)
+![Gif fofo](https://cdn-images-1.medium.com/max/1600/1*STNI_Cotyz9jyUY79Hf1kg.gif)
 
 :heartpulse:
 
