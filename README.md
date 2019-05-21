@@ -17,5 +17,5 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
 
 1.  Links uteis sobre GO:
     - [scotch.io](https://scotch.io/bar-talk/build-a-realtime-chat-server-with-go-and-websockets)
-    - [pusher] (https://pusher.com/tutorials/chat-app-go)
-    - [scaledrone] (https://www.scaledrone.com/blog/go-chat-app-tutorial-build-a-real-time-chat/amp/)
+    - [pusher](https://pusher.com/tutorials/chat-app-go)
+    - [scaledrone](https://www.scaledrone.com/blog/go-chat-app-tutorial-build-a-real-time-chat/amp/)
