@@ -16,8 +16,8 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
 :heartpulse:
 
 1. Link sobre como instalar Go :
-    - [Ubuntu] (https://tecadmin.net/install-go-on-ubuntu/)
-    - [Site oficial] (https://golang.org/doc/install)
+    - [Ubuntu](https://tecadmin.net/install-go-on-ubuntu/)
+    - [Site oficial](https://golang.org/doc/install)
 
 2.  Links uteis sobre o projeto do chat em GO:
     - [scotch.io](https://scotch.io/bar-talk/build-a-realtime-chat-server-with-go-and-websockets)
