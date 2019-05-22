@@ -25,4 +25,4 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
     - [scaledrone](https://www.scaledrone.com/blog/go-chat-app-tutorial-build-a-real-time-chat/amp/)
 
 3. Tutorias :
-    - [GO-Tour] (https://go-tour-br.appspot.com/welcome/1)
+    - [GO-Tour](https://go-tour-br.appspot.com/welcome/1)
