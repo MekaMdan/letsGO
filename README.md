@@ -27,9 +27,10 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
 3. Tutorias :
     - [GO-Tour](https://go-tour-br.appspot.com/welcome/1)
 
-4. 
+
+4. Etc:
     - WebSockets in Go
-    
+
     `
      go get github.com/gorilla/websocket
     `
