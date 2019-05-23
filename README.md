@@ -29,6 +29,6 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
 
 4. 
     - WebSockets in Go
-    '
-    go get github.com/gorilla/websocket
-    '
+    `
+     go get github.com/gorilla/websocket
+    `
