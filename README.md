@@ -35,6 +35,5 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
      go get github.com/gorilla/websocket
     `
     - [Rails so que em GO](https://revel.github.io/) 
-      
-        -[tutorial](https://revel.github.io/tutorial/gettingstarted.html)
+        - [tutorial](https://revel.github.io/tutorial/gettingstarted.html)
 
