@@ -23,6 +23,7 @@ Projeto de Linguagens de Programação envolvendo a criação de um chat escrito
     - [scotch.io](https://scotch.io/bar-talk/build-a-realtime-chat-server-with-go-and-websockets)
     - [pusher](https://pusher.com/tutorials/chat-app-go)
     - [scaledrone](https://www.scaledrone.com/blog/go-chat-app-tutorial-build-a-real-time-chat/amp/)
+    - [revel](https://revel.github.io/examples/chat.html)
 
 3. Tutorias :
     - [GO-Tour](https://go-tour-br.appspot.com/welcome/1)
