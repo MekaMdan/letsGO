@@ -59,7 +59,7 @@ func (Sala *Chat) Login(nome string, conn *websocket.Conn) *Cliente{    //faz lo
 
     Sala.clientes[nome] = cliente;
     if(nome == "schwarzenegger"){
-        Sala.InsereMsg("<I><B>" + nome + "</B></I> IS BACK")
+        Sala.InsereMsg("<I><B>" + nome + "</B> IS BACK</I>")
     }else{
         Sala.InsereMsg("<B>" + nome + "</B> esta entre nos.")
     }
@@ -72,7 +72,7 @@ func (Sala *Chat) Logoff(nome string){  //faz logoff de um cliente do chat
     delete(Sala.clientes, nome)
     Sala.clientesLock.Unlock();
     if(nome == "schwarzenegger"){
-        Sala.InsereMsg("<I><B>" + nome + "</B></I> WILL BE BACK")
+        Sala.InsereMsg("<I><B>" + nome + "</B> WILL BE BACK </I>")
     }else{
         Sala.InsereMsg("<B>" + nome + "</B> nao esta mais entre nos.")
     }
@@ -104,9 +104,9 @@ func (Sala *Chat) Broadcast(){
 
 //cliente
 
-func (User *Cliente) NovaMsg(msg string){   //quer madnar uma mensagem
+func (User *Cliente) NovaMsg(msg string){   //quer mandar uma mensagem
     if(User.nome == "schwarzenegger"){
-        User.sala.InsereMsg("<B><I>" + User.nome + ":</B></I>" + msg)
+        User.sala.InsereMsg("<B><I>" + User.nome + ":</B>" + msg + "</I>")
     }else{
         User.sala.InsereMsg("<B>" + User.nome + ":</B>" + msg)
     }
