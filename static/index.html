@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8'>
-  <title>Simple Chat with Go</title>
+  <title>Chat do Cruzeiro</title>
   <style>
     #messages {
       border: 1px solid #666;
@@ -24,17 +24,18 @@
 </head>
 
 <body>
-  <h1>Simple Chat with Go</h1>
+  <h1>Chat do Cruzeiro</h1>
+  <img src="zeiro.png" alt="cruzeiro campeão" width=200 height=200>
   <div id="phase1">
-    <P>Please enter your name to Join the chat</P>
+    <P>Coloque seu nome para entrar no chat</P>
     <input id="name">
-    <button id="join">Join</button>
+    <button id="join">Entrar</button>
   </div>
   <div id="error"></div>
   <div id="phase2" style="opacity:0">
     <div id="messages"></div>
     <textarea id="msg"></textarea>
-    <br/><button id="send">Send</button>
+    <br/><button id="send">Enviar</button>
   </div>
 
   <script>
@@ -51,7 +52,7 @@
       $("#error").html("");
       var name= escapeHtml($("#name").val())
       if(name.length<3){
-        $("#error").html("Name is too short!");
+        $("#error").html("Nome é muito pequeno!");
         return
       }
       console.log("join started")
@@ -64,16 +65,16 @@
           $("#msg").focus()
         })
       };
-      chat.onerror = function(evt) { 
-        console.log("Websocket Error:",evt) 
-      };  
+      chat.onerror = function(evt) {
+        console.log("Websocket Error:",evt)
+      };
       chat.onclose = function(evt) {
         console.log("chat closing")
         $("#phase1").stop().css({display:"block"}).animate({opacity:1},500)
         $("#phase2").stop().animate({opacity:0})
-        $("#error").html("That name was already used!")
+        $("#error").html("Nome já foi utilizado!")
       };
-      chat.onmessage = function(evt) { 
+      chat.onmessage = function(evt) {
         $("#messages").append(evt.data).scrollTop(9e6)
       };
 
@@ -90,7 +91,7 @@
     $("#send").click(function(){
       chat.send(escapeHtml($("#msg").val()));
       $("#msg").val("");
-    })    
+    })
 
 //helper function for escaping HTML
  var entityMap = {
