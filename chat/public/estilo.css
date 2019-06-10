@@ -1,0 +1,114 @@
+body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 160%;
+    background-color:seashell;
+    display: flex;
+    min-height: 10vh;
+    flex-direction: column;
+}
+
+.titulo{
+    text-align: right;
+}
+
+
+#chat-messages {
+    position: relative;
+    min-height: 10vh;
+    height: 60vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+
+
+.card {
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    flex: 0 1 90%
+}
+
+.card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+main {
+    background-color: snow;
+    min-height: 80vh;
+}
+
+footer {
+ 
+    
+}
+
+.sidebar{
+  width: 30%;
+
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+#fixo{
+  width: 100%;
+  height: 20%;
+  position: relative;
+  padding-bottom: 15px;
+  left:0;
+  border-bottom: 1px solid #ddd;
+}
+
+#itens{
+  min-height: 10vh;
+  height: 51vh;
+	position: relative;
+	overflow-y: scroll;
+}
+
+.search {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+form.search input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid rosybrown;
+  float: left;
+  width: 50%;
+  background: aliceblue;
+}
+
+form.search button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: papayawhip;
+  color: white;
+  font-size: 17px;
+  border: 1px solid rosybrown;
+  border-left: auto;
+  cursor: pointer;
+}
+
+form.search button:hover {
+  background: rosybrown;
+}
+
+form.search::after {
+  content: "";
+  clear: both;
+  display: table;
+}
