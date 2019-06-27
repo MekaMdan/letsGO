@@ -2,66 +2,63 @@
 <html>
 <head>
   <meta charset='utf-8'>
-  <title>Chat do Cruzeiro</title>
-  <style>
-    #messages {
-      border: 1px solid #666;
-      height: 300px;
-      width: 50%;
-      overflow: auto;
-    }
-    #msg {
-      width: 50%;
-      height: 3em;
-    }
-    #error {
-      color: #f00;
-      padding: 5px;
-      font-weight: bold;
-    }
-  </style>
+  <title>Chat do Gopher</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link href="https://fonts.googleapis.com/css?family=Mali&display=swap" rel="stylesheet">
   <script src="jquery.js"></script>
 </head>
 
 <body>
-  <h1>Chat do Cruzeiro</h1>
-  <img src="zeiro.png" alt="cruzeiro campeão" width=200 height=200>
-  <div id="phase1">
-    <P>Coloque seu nome para entrar no chat</P>
-    <input id="name">
-    <button id="join">Entrar</button>
-  </div>
-  <div id="error"></div>
-  <div id="phase2" style="opacity:0">
-    <div id="messages"></div>
-    <textarea id="msg"></textarea>
-    <br/><button id="send">Enviar</button>
-  </div>
+  <main>
+    <div class="sidebar">
+      <img src="gopher.png" alt="cruzeiro campeão" width=200>
+      <h1>Chat do Gopher</h1>
+      <p>Para conversar com seus amigos <br> <del>de programação</del> do coração</p>
+    </div>
+    <div class="chat-side">
+      <div class="add-user" id="login">
+        <p>Coloque seu nome para entrar no chat</p>
+        <input class="form-control" id="name">
+        <button class="btn btn-primary" id="join">Entrar</button>
+        <div id="error"></div>
+      </div>
+      <div id="chat">
+        <div class="form-control" id="messages"></div>
+        <textarea class="form-control" id="msg"></textarea>
+        <br/><button class="btn btn-primary" id="send">Enviar</button>
+      </div>
+    </div>
+  </main>
+
+
+  <!--Trecho em JavaScript-->
 
   <script>
     $("INPUT").val("")
     $("#name").keypress(function(evt){
-      if(evt.originalEvent.keyCode==13){
+      if(evt.keyCode == 13){
         $("#join").trigger("click")
-        //submit name
+        //Envia o nome se for utilizado o enter ao invés do click
       }
     })
 
-    //handling the start of the chat
+    //Ao clicar no botão
     $("#join").click(function(){
       $("#error").html("");
-      var name= escapeHtml($("#name").val())
-      if(name.length<3){
-        $("#error").html("Nome é muito pequeno!");
+      var name = escapeHtml($("#name").val())
+      if(name.length < 3){
+        $("#error").html("Nome de usuário precisa ter, no mínimo, 3 caracteres.");
         return
       }
-      console.log("join started")
+      // Abre o webSocket
       chat = new WebSocket("ws://"+window.location.host+"/ws");
+
       chat.onopen = function(evt) {
         chat.send(name);  //sending the chat name
-        $("#phase1").animate({opacity:0},500,"linear",function(){
-          $("#phase1").css({display:"none"})
-          $("#phase2").css({opacity:1})
+        $("#login").animate({opacity:0},500,"linear",function(){
+          $("#login").css({display: "none"})
+          $("#chat").css({display: "block"})
           $("#msg").focus()
         })
       };
@@ -70,9 +67,9 @@
       };
       chat.onclose = function(evt) {
         console.log("chat closing")
-        $("#phase1").stop().css({display:"block"}).animate({opacity:1},500)
-        $("#phase2").stop().animate({opacity:0})
-        $("#error").html("Nome já foi utilizado!")
+        $("#login").stop().css({display:"block"}).animate({opacity:1},500)
+        $("#chat").stop().animate({opacity:0})
+        $("#error").html("Nome de usuário já está em uso!")
       };
       chat.onmessage = function(evt) {
         $("#messages").append(evt.data).scrollTop(9e6)
@@ -93,7 +90,7 @@
       $("#msg").val("");
     })
 
-//helper function for escaping HTML
+//Função para substituir HTML e higienizar entradas
  var entityMap = {
     "&": "&amp;",
     "<": "&lt;",
@@ -108,15 +105,6 @@
     return String(string).replace(/[&<>"'\/]/g, function (s) {
       return entityMap[s];
     });
-  }
-
-//helper function for debugging purposes
-  function toHex(str) {
-    var result = '';
-    for (var i=0; i<str.length; i++) {
-      result += ("0"+str.charCodeAt(i).toString(16)).slice(-2)+" ";
-    }
-    return result.toUpperCase();
   }
 
   </script>
