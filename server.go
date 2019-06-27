@@ -1,21 +1,14 @@
 package main
 
 import (
-<<<<<<< HEAD
-	"fmt"
-	"strconv"
-	"sync"
-
-	"./websocket"
-=======
     "fmt"
     "github.com/gorilla/websocket"
-    "sync"
+	"sync"
+	"strconv"
     //"net"
     "net/http"
     "time"
 )
->>>>>>> d8f35a5d019cd9d45db4ebfa4911665100e158b6
 
 	//"net"
 	"net/http"
