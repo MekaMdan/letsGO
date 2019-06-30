@@ -26,6 +26,7 @@
         <div id="error"></div>
       </div>
       <div id="chat">
+          <h1 id="room_header">Sala</h1>
         <div class="form-control" id="messages"></div>
         <textarea class="form-control" id="msg"></textarea>
         <br/><button class="btn btn-primary" id="send">Enviar</button>
@@ -83,6 +84,7 @@
         $("#messages").append(evt.data).scrollTop(9e6)
       };
 
+      document.getElementById("room_header").innerHTML = "Sala " + room
     })
 
     $("#msg").keypress(function(evt){

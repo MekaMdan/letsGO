@@ -72,9 +72,9 @@ func (Sala *Chat) Login(nome string, conn *websocket.Conn) *Cliente { //faz logi
 	case "schwarzenegger":
 		Sala.InsereMsg("<font color='#CA0000'><I><B>" + nome + "</B> IS BACK</I></font>")
 	case "cruzeiro":
-		Sala.InsereMsg("<font color='#0097FF'><I><B>" + nome + "</B> campeão chegou</I></font>")
+		Sala.InsereMsg("<font color='#0058A2'><I><B>" + nome + "</B> campeão chegou</I></font>")
 	case "ladeira":
-		Sala.InsereMsg("<font color='#0097FF'><I><B>" + nome + "</B> chegou com a camisa do Cruzeiro </I></font>")
+		Sala.InsereMsg("<font color='#0058A2'><I><B>" + nome + "</B> chegou com a camisa do Cruzeiro </I></font>")
 	default:
 		Sala.InsereMsg("<B>" + nome + "</B> está entre nós.")
 	}
@@ -95,9 +95,9 @@ func (Sala *Chat) Logoff(nome string) { //faz logoff de um cliente do chat
 	case "schwarzenegger":
 		message = "<font color='#CA0000'><I><B>" + nome + "</B> WILL BE BACK </I></font>"
 	case "cruzeiro":
-		message = "<font color='#0097FF'><I><B>" + nome + "</B> foi guardar os troféus </I><font>"
+		message = "<font color='#0058A2'><I><B>" + nome + "</B> foi guardar os troféus </I><font>"
 	case "ladeira":
-		message = "<font color='#0097FF'><I><B>" + nome + "</B> foi assistir o jogo</I><font>"
+		message = "<font color='#0058A2'><I><B>" + nome + "</B> foi assistir o jogo</I><font>"
 	default:
 		message = "<B>" + nome + "</B> não está mais entre nós."
 	}
@@ -153,9 +153,9 @@ func (User *Cliente) NovaMsg(msg string) { //quer mandar uma mensagem
 	case "schwarzenegger":
 		message_form = "<font color='#CA0000'><B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I></font>"
 	case "cruzeiro":
-		message_form = "<font color='#0097FF'><B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I></font>"
+		message_form = "<font color='#0058A2'><B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I></font>"
 	case "ladeira":
-		message_form = "<font color='#0097FF'><B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I></font>"
+		message_form = "<font color='#0058A2'><B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I></font>"
 	default:
 		message_form = "<B>[" + t + "] " + User.nome + ":</B> " + msg
 	}
