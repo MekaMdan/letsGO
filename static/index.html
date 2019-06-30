@@ -20,6 +20,8 @@
       <div class="add-user" id="login">
         <p>Coloque seu nome para entrar no chat</p>
         <input class="form-control" id="name">
+        <p>Escolha sua sala (0 - 5)</p>
+        <input class="form-control" id="room">
         <button class="btn btn-primary" id="join">Entrar</button>
         <div id="error"></div>
       </div>
@@ -36,7 +38,7 @@
 
   <script>
     $("INPUT").val("")
-    $("#name").keypress(function(evt){
+    $("#room").keypress(function(evt){
       if(evt.keyCode == 13){
         $("#join").trigger("click")
         //Envia o nome se for utilizado o enter ao invés do click
@@ -47,15 +49,21 @@
     $("#join").click(function(){
       $("#error").html("");
       var name = escapeHtml($("#name").val())
+      var room = escapeHtml($("#room").val())
       if(name.length < 3){
         $("#error").html("Nome de usuário precisa ter, no mínimo, 3 caracteres.");
         return
+      }
+      if(room<0 || room>5){
+          $("#error").html("Sala inválida");
+          return
       }
       // Abre o webSocket
       chat = new WebSocket("ws://"+window.location.host+"/ws");
 
       chat.onopen = function(evt) {
         chat.send(name);  //sending the chat name
+        chat.send(room);
         $("#login").animate({opacity:0},500,"linear",function(){
           $("#login").css({display: "none"})
           $("#chat").css({display: "block"})
