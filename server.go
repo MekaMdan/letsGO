@@ -68,11 +68,17 @@ func (Sala *Chat) Login(nome string, conn *websocket.Conn) *Cliente { //faz logi
 	}
 
 	Sala.clientes[nome] = cliente
-	if nome == "schwarzenegger" {
-		Sala.InsereMsg("<I><B>" + nome + "</B> IS BACK</I>")
-	} else {
+	switch nome{
+	case "schwarzenegger":
+		Sala.InsereMsg("<font color='#CA0000'><I><B>" + nome + "</B> IS BACK</I></font>")
+	case "cruzeiro":
+		Sala.InsereMsg("<font color='#0097FF'><I><B>" + nome + "</B> campeão chegou</I></font>")
+	case "ladeira":
+		Sala.InsereMsg("<font color='#0097FF'><I><B>" + nome + "</B> chegou com a camisa do Cruzeiro </I></font>")
+	default:
 		Sala.InsereMsg("<B>" + nome + "</B> está entre nós.")
 	}
+
 
     fmt.Printf("[SERVER] User %s - Sala %d (Conectado)\n", nome, Sala.id)
 
@@ -85,10 +91,15 @@ func (Sala *Chat) Logoff(nome string) { //faz logoff de um cliente do chat
     Sala.clientesLock.Lock()
 	delete(Sala.clientes, nome)
 	Sala.clientesLock.Unlock()
-	if nome == "schwarzenegger" {
-        message = "<I><B>" + nome + "</B> WILL BE BACK </I>"
-	} else {
-        message = "<B>" + nome + "</B> não está mais entre nós."
+	switch nome{
+	case "schwarzenegger":
+		message = "<font color='#CA0000'><I><B>" + nome + "</B> WILL BE BACK </I></font>"
+	case "cruzeiro":
+		message = "<font color='#0097FF'><I><B>" + nome + "</B> foi guardar os troféus </I><font>"
+	case "ladeira":
+		message = "<font color='#0097FF'><I><B>" + nome + "</B> foi assistir o jogo</I><font>"
+	default:
+		message = "<B>" + nome + "</B> não está mais entre nós."
 	}
 
     Sala.InsereMsg(message)
@@ -137,13 +148,20 @@ func getHoras() string {
 func (User *Cliente) NovaMsg(msg string) { //quer mandar uma mensagem
 	t := getHoras()
     var message_form string
-	if User.nome == "schwarzenegger" {
-        message_form = "<B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I>"
-	} else {
-        message_form = "<B>[" + t + "] " + User.nome + ":</B> " + msg
+
+	switch User.nome {
+	case "schwarzenegger":
+		message_form = "<font color='#CA0000'><B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I></font>"
+	case "cruzeiro":
+		message_form = "<font color='#0097FF'><B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I></font>"
+	case "ladeira":
+		message_form = "<font color='#0097FF'><B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I></font>"
+	default:
+		message_form = "<B>[" + t + "] " + User.nome + ":</B> " + msg
 	}
+
     User.sala.InsereMsg(message_form)
-    fmt.Printf("[SALA %d] User %s - %s\n", User.sala.id, User.nome, message_form)
+    fmt.Printf("[SALA %d] User %s - %s\n", User.sala.id, User.nome, msg)
 }
 
 //Sair realiza a saida do cliente
