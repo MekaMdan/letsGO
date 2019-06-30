@@ -14,9 +14,10 @@ import (
 
 //tipos
 type Chat struct {
-	clientes     map[string]Cliente
+	clientes map[string]Cliente
 	clientesLock sync.Mutex
-	fila         chan string
+	fila chan string
+    id int
 }
 
 type Cliente struct {
@@ -25,21 +26,26 @@ type Cliente struct {
 	sala *Chat
 }
 
-//chat
-var Sala Chat
 
-func broadcastLoop() { //corotina do loop para dar broadcast nas mensagens
+//chat
+const NSALA = 5 //quantidade de salas
+
+const BROADCASTDELAY = 100
+
+var Sala [NSALA]Chat
+
+func broadcastLoop(sala int) { //corotina do loop para dar broadcast nas mensagens
 	for {
-		Sala.Broadcast()
-		time.Sleep(100 * time.Millisecond)
+        Sala[sala].Broadcast()
+		time.Sleep(BROADCASTDELAY * time.Millisecond)
 	}
 }
 
-func (Sala *Chat) Initialize() { //inicializando a sala de chat
+func (Sala *Chat) Initialize(sala int) { //inicializando a sala de chat
 	Sala.clientes = make(map[string]Cliente)
 	Sala.fila = make(chan string, 5)
+    Sala.id = sala
 
-	go broadcastLoop()
 
 }
 
@@ -67,19 +73,26 @@ func (Sala *Chat) Login(nome string, conn *websocket.Conn) *Cliente { //faz logi
 	} else {
 		Sala.InsereMsg("<B>" + nome + "</B> está entre nós.")
 	}
+
+    fmt.Printf("[SERVER] User %s - Sala %d (Conectado)\n", nome, Sala.id)
+
 	return &cliente
 }
 
 //Logoff tira o usuario do chat
 func (Sala *Chat) Logoff(nome string) { //faz logoff de um cliente do chat
-	Sala.clientesLock.Lock()
+    var message string
+    Sala.clientesLock.Lock()
 	delete(Sala.clientes, nome)
 	Sala.clientesLock.Unlock()
 	if nome == "schwarzenegger" {
-		Sala.InsereMsg("<I><B>" + nome + "</B> WILL BE BACK </I>")
+        message = "<I><B>" + nome + "</B> WILL BE BACK </I>"
 	} else {
-		Sala.InsereMsg("<B>" + nome + "</B> não está mais entre nós.")
+        message = "<B>" + nome + "</B> não está mais entre nós."
 	}
+
+    Sala.InsereMsg(message)
+    fmt.Printf("[SERVER] User %s - Sala %d (Desconectado)\n", nome, Sala.id)
 }
 
 //InsereMsg Insere mensagem na fila do broadcast
@@ -123,11 +136,14 @@ func getHoras() string {
 //NovaMsg quando o cliente quer enviar uma mensagem
 func (User *Cliente) NovaMsg(msg string) { //quer mandar uma mensagem
 	t := getHoras()
+    var message_form string
 	if User.nome == "schwarzenegger" {
-		User.sala.InsereMsg("<B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I>")
+        message_form = "<B><I>[" + t + "] " + User.nome + ":</B> " + msg + "</I>"
 	} else {
-		User.sala.InsereMsg("<B>[" + t + "] " + User.nome + ":</B> " + msg)
+        message_form = "<B>[" + t + "] " + User.nome + ":</B> " + msg
 	}
+    User.sala.InsereMsg(message_form)
+    fmt.Printf("[SALA %d] User %s - %s\n", User.sala.id, User.nome, message_form)
 }
 
 //Sair realiza a saida do cliente
@@ -141,23 +157,20 @@ func (User *Cliente) Enviar(msgs string) {
 }
 
 //PARTE DE HTML - PAGINA DA WEB DO LADO DO CLIENTE
-func staticFiles(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "./static"+r.URL.Path)
-}
-
-var upgrader = websocket.Upgrader{
-	ReadBufferSize:  1024,
-	WriteBufferSize: 1024,
-	CheckOrigin:     func(r *http.Request) bool { return true },
-}
 
 func rotinaUser(conn *websocket.Conn) {
 	_, msg, err := conn.ReadMessage()
-	cliente := Sala.Login(string(msg), conn)
-	if cliente == nil || err != nil {
+    _, sala_temp, err2 := conn.ReadMessage()
+
+    sala_string := string(sala_temp)
+    sala, _ := strconv.Atoi(sala_string)
+
+    cliente := Sala[sala].Login(string(msg), conn)
+	if cliente == nil || err != nil  || err2 != nil {
 		conn.Close() //em caso de erro na leitura da mensagem ou no cliente, fecha a conexao e retorna a corotina
 		return
 	}
+
 
 	for { //cliente espera por mensagens
 		_, msg, err := conn.ReadMessage()
@@ -169,25 +182,40 @@ func rotinaUser(conn *websocket.Conn) {
 	}
 }
 
-func webHandler(w http.ResponseWriter, r *http.Request) {
-	conn, err := upgrader.Upgrade(w, r, nil)
+func staticFiles(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "./static"+r.URL.Path)
+}
 
-	if err != nil {
-		fmt.Println("Erro no websocket:", err)
-		return
-	}
-	go rotinaUser(conn)
+var upgrader = websocket.Upgrader{
+    ReadBufferSize:  1024,
+    WriteBufferSize: 1024,
+    CheckOrigin:     func(r *http.Request) bool { return true },
+}
+
+func webHandler(w http.ResponseWriter, r *http.Request) {
+    conn, err := upgrader.Upgrade(w, r, nil)
+
+    if err != nil {
+        println("Erro no websocket:", err)
+        return
+    }
+    go rotinaUser(conn)
 }
 
 //Start  Printa a inicialização do client no terminal
 func Start() {
-	println("Servidor rodando...")
+    fmt.Printf("[SERVER] Servidor rodando...\n")
 }
 
 func main() {
+
 	http.HandleFunc("/ws", webHandler)
 	http.HandleFunc("/", staticFiles)
-	Sala.Initialize()
+    for i:=0;i<NSALA;i++ {
+        Sala[i].Initialize(i)
+        go broadcastLoop(i)
+    }
 	Start()
+
 	http.ListenAndServe(":8000", nil)
 }
